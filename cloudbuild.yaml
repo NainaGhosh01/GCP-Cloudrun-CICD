@@ -4,11 +4,11 @@ options:
 steps:
   # Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-repo/cloudrun-app', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-rep/cloudrun-app', '.']
 
   # Push image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-repo/cloudrun-app']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-rep/cloudrun-app']
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,10 +17,10 @@ steps:
       - run
       - deploy
       - cloudrun-app
-      - --image=us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-repo/cloudrun-app
+      - --image=us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-rep/cloudrun-app
       - --region=us-central1
       - --platform=managed
       - --allow-unauthenticated
 
 images:
-  - us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-repo/cloudrun-app
+  - us-central1-docker.pkg.dev/$PROJECT_ID/cloudrun-rep/cloudrun-app
